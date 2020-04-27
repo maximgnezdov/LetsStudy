@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        primarySwatch: Colors.deepOrange,
+        primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Flutter Application Home Page'),
+      home: MyHomePage(title: 'LetsStudy'),
     );
   }
 }
