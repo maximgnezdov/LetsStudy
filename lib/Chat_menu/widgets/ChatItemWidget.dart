@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/Chat_menu/config/Palette.dart';
-//import 'package:intl/intl.dart';
+import 'package:flutterapp/Chat_menu/config/Style.dart';
+import 'package:intl/intl.dart';
 
 class ChatItemWidget extends StatelessWidget{
-  var index;
+  final int index;
 
-  ChatItemWidget(this.index);
+ const ChatItemWidget(this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +38,8 @@ class ChatItemWidget extends StatelessWidget{
                 children: <Widget>[
                   Container(
                     child: Text(
-                      "AAAAAAA",//DateFormat('dd MMM kk:mm').format(DateTime.fromMillisecondsSinceEpoch(1565888474278)),
-                      style: TextStyle(
-                          color: Palette.greyColor,
-                          fontSize: 12.0,
-                          fontStyle: FontStyle.normal),
+                      DateFormat('dd MMM kk:mm').format(DateTime.fromMillisecondsSinceEpoch(1565888474278)),
+                      style: Styles.date,
                     ),
                     margin: EdgeInsets.only(left: 5.0, top: 5.0, bottom: 5.0),
                   )])
@@ -69,11 +67,8 @@ class ChatItemWidget extends StatelessWidget{
             ),
             Container(
               child: Text(
-                "AAAAA",//DateFormat('dd MMM kk:mm').format(DateTime.fromMillisecondsSinceEpoch(1565888474278)),
-                style: TextStyle(
-                    color: Palette.greyColor,
-                    fontSize: 12.0,
-                    fontStyle: FontStyle.normal),
+                DateFormat('dd MMM kk:mm').format(DateTime.fromMillisecondsSinceEpoch(1565888474278)),
+                style: Styles.date,
               ),
               margin: EdgeInsets.only(left: 5.0, top: 5.0, bottom: 5.0),
             )

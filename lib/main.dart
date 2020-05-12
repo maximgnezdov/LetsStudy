@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Chat_menu/pages/ConversationPageList.dart';
+import 'Chat_menu/config/Palette.dart';
+import 'Chat_menu/pages/ConversationPageSlide.dart';
 void main() => runApp(LetsStudy());
 
 class LetsStudy extends StatelessWidget {
@@ -10,9 +11,9 @@ class LetsStudy extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        primarySwatch: Colors.deepPurple,
+        primaryColor: Palette.primaryColor,
       ),
-      home: ConversationPageList(),
+      home: ConversationPageSlide(),
     );
   }
 }
