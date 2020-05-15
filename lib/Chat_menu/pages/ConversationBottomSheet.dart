@@ -45,8 +45,8 @@ class _ConversationBottomSheetState extends State<ConversationBottomSheet> {
                     child: Divider(
                 color: Palette.accentColor,
               )),
-          itemBuilder: (context, index) {
-            return ChatRowWidget();
+              itemBuilder: (context, index) {
+                return ChatRowWidget();
           },
         )
         ])));
