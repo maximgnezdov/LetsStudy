@@ -12,10 +12,10 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
  // Text style for everything else
 
-   // double width = MediaQuery.of(context).size.width; // calculate the screen width
+   // double width = MediaQuery.of(context).size.width;
     return Material(
         child: Container(
-            decoration: new BoxDecoration(boxShadow: [ //adds a shadow to the appbar
+            decoration: new BoxDecoration(boxShadow: [
               new BoxShadow(
                 color: Colors.grey,
                 blurRadius: 2.0,
@@ -25,7 +25,7 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                 padding: EdgeInsets.only(top: 10, bottom: 10),
                 color: Palette.primaryBackgroundColor,
                 child: Row(children: <Widget>[
-                  Expanded( //we're dividing the appbar into 7 : 3 ratio. 7 is for content and 3 is for the display picture.
+                  Expanded(
                       flex: 7,
                       child: Center(
                           child: Column(
@@ -60,7 +60,6 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
                                               ))),
                                     ],
                                   )),
-                              //second row containing the buttons for media
                               Expanded(
                                   flex: 3,
                                   child: Container(
