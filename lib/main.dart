@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Chat_menu/config/Palette.dart';
 import 'Chat_menu/pages/ConversationPageSlide.dart';
+import 'Chat_menu/pages/RegisterPage.dart';
+
 void main() => runApp(LetsStudy());
 
 class LetsStudy extends StatelessWidget {
@@ -13,7 +15,8 @@ class LetsStudy extends StatelessWidget {
 
         primaryColor: Palette.primaryColor,
       ),
-      home: ConversationPageSlide(),
+      //home: ConversationPageSlide(),
+      home: RegisterPage(),
     );
   }
 }
