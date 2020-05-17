@@ -14,9 +14,9 @@ class _ConversationPageState extends State<ConversationPage> {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
-      Expanded(flex: 2, child: ChatAppBar()), // Custom app bar for chat screen
+      Expanded(flex: 3, child: ChatAppBar()), // Custom app bar for chat screen
       Expanded(
-          flex: 11,
+          flex: 12,
           child: Container(
             color: Palette.chatBackgroundColor,
             child: ChatListWidget(),

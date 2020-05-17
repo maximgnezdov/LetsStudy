@@ -1,7 +1,42 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/Chat_menu/config/Assets.dart';
 import 'package:flutterapp/Chat_menu/config/Palette.dart';
 import 'package:flutterapp/Chat_menu/config/Style.dart';
+
+class jackShape extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Gradient gradient = new LinearGradient(
+        begin: Alignment.centerRight,
+        end: Alignment.centerLeft,
+        stops: [
+          0.8,
+          1
+        ],
+        colors: [
+          Palette.selfMessageBackgroundColor,
+          Palette.gradientColor.withOpacity(0.6)
+        ]);
+
+    final Rect colorBounds = Rect.fromLTRB(0, 0, size.width, size.height);
+    final Paint paint = new Paint()
+      ..shader = gradient.createShader(colorBounds);
+
+    var path = Path();
+    path.lineTo(0, size.height * 0.145498);
+    path.quadraticBezierTo(size.width * 0.0335593, size.height * 0.9999999,
+        size.width * 0.2309322, size.height * 0.958895);
+    path.quadraticBezierTo(size.width * 0.7796610, size.height * 0.7052208,
+        size.width, size.height * 0.963190);
+    path.lineTo(size.width, 0);
+    path.lineTo(0, 0);
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
+}
 
 class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height = 100;
@@ -10,99 +45,82 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
- // Text style for everything else
+    // Text style for everything else
 
-   // double width = MediaQuery.of(context).size.width; // calculate the screen width
+    // double width = MediaQuery.of(context).size.width; // calculate the screen width
     return Material(
         child: Container(
-            decoration: new BoxDecoration(boxShadow: [ //adds a shadow to the appbar
-              new BoxShadow(
-                color: Colors.grey,
-                blurRadius: 2.0,
-                spreadRadius: 0.1
-              )]),
-            child:  Container(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
-                color: Palette.primaryBackgroundColor,
+          color: Palette.chatBackgroundColor,
+          child: CustomPaint(
+            painter: jackShape(),
+            child: Container(
+                padding: EdgeInsets.only(top: 10, bottom: 10, left: 30),
                 child: Row(children: <Widget>[
-                  Expanded( //we're dividing the appbar into 7 : 3 ratio. 7 is for content and 3 is for the display picture.
-                      flex: 7,
+                  Expanded(
+                      flex: 4,
+                      child: Container(
+                          child: Center(
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundImage: Image
+                                    .asset(
+                                  Assets.Maria,
+                                )
+                                    .image,
+                              )))),
+                  Expanded(
+                    //we're dividing the appbar into 7 : 3 ratio. 7 is for content and 3 is for the display picture.
+                      flex: 11,
                       child: Center(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Expanded(
-                                  flex: 7,
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment
+                                        .start,
                                     children: <Widget>[
+                                      Expanded(
+                                          flex: 9,
+                                          child: Container(
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 30),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .center,
+                                                  mainAxisSize: MainAxisSize
+                                                      .min,
+                                                  children: <Widget>[
+                                                    Text('Maria Gomez',
+                                                        style: Styles
+                                                            .textHeading),
+                                                    Text('@gomezMaria',
+                                                        style: Styles
+                                                            .subHeading)
+                                                  ],
+                                                ),
+                                              ))),
                                       Expanded(
                                           flex: 2,
                                           child: Center(
                                               child: IconButton(
-                                                icon: Icon(
-                                                  Icons.attach_file,
-                                                  color: Palette.secondaryColor,
-                                                ),
-                                                  onPressed: ()=>{}))),
-                                      Expanded(
-                                          flex: 6,
-                                          child: Container(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: <Widget>[
-                                                  Text('Aditya Gurjar', style: Styles.textHeading),
-                                                  Text('@adityagurjar', style: Styles.text)
-                                                ],
-                                              ))),
+                                                  icon: Icon(
+                                                    Icons.more_vert,
+                                                    color: Palette.primaryColor,
+                                                  ),
+                                                  onPressed: () => {}))),
                                     ],
                                   )),
                               //second row containing the buttons for media
-                              Expanded(
-                                  flex: 3,
-                                  child: Container(
-                                      padding: EdgeInsets.fromLTRB(20, 5, 5, 0),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                        Text(
-                                        'Photos',
-                                        style: Styles.text,
-                                      ),
-                                      VerticalDivider(
-                                        width: 30,
-                                        color: Palette.primaryTextColor,
-                                      ),
-                                      Text(
-                                        'Videos',
-                                        style: Styles.text,
-                                      ),
-                                      VerticalDivider(
-                                        width: 30,
-                                        color: Palette.primaryTextColor,
-                                      ),
-                                      Text('Files', style: Styles.text)
-
-                                    ],
-                                  ))),
                             ],
                           ))),
                   //This is the display picture
-                  Expanded(
-                      flex: 3,
-                      child: Container(
-                          child: Center(
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundImage: Image.asset(
-                                  Assets.user,
-                                ).image,
-                              )))),
-                ]))));
+                ])),
+          ),
+        ));
   }
 
   @override
