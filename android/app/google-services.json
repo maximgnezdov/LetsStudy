@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "891301316457",
+    "firebase_url": "https://letsstudy-50dda.firebaseio.com",
+    "project_id": "letsstudy-50dda",
+    "storage_bucket": "letsstudy-50dda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891301316457:android:ac2cfa3f9fb075c2cfdff8",
+        "android_client_info": {
+          "package_name": "com.example.flutterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891301316457-fh7bni4p04eecdk3oi0ih600og9371nv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutterapp",
+            "certificate_hash": "6b5b00de66da6add344f6298300a7b5851843e62"
+          }
+        },
+        {
+          "client_id": "891301316457-56goqpdcj87f0m9mhhf543ekal3cdva0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyBkypFkQ3mJknxiVmIsOwjHdRp2krVDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891301316457-56goqpdcj87f0m9mhhf543ekal3cdva0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
