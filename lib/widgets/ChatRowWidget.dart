@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:flutterapp/Chat_menu/config/Assets.dart';
-import 'package:flutterapp/Chat_menu/config/Style.dart';
+import 'package:flutterapp/config/Assets.dart';
+import 'package:flutterapp/config/Style.dart';
 
 class ChatRowWidget extends StatelessWidget {
   @override

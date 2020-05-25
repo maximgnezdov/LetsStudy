@@ -1,7 +1,7 @@
 // TODO Implement this library.
 
 import 'package:flutter/material.dart';
-import 'package:flutterapp/Chat_menu/config/Palette.dart';
+import 'package:flutterapp/config/Palette.dart';
 
 // ignore: must_be_immutable
 class CircleIndicator extends StatefulWidget{

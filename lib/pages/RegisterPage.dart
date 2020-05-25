@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutterapp/Chat_menu/config/Assets.dart';
-import 'package:flutterapp/Chat_menu/config/Palette.dart';
-import 'package:flutterapp/Chat_menu/config/Style.dart';
-import 'package:flutterapp/Chat_menu/config/Transitions.dart';
-import 'package:flutterapp/Chat_menu/pages/ConversationPageSlide.dart';
-import 'package:flutterapp/Chat_menu/widgets/CircleIndicator.dart';
-import 'package:flutterapp/Chat_menu/widgets/NumberPicker.dart';
+import 'package:flutterapp/config/Assets.dart';
+import 'package:flutterapp/config/Palette.dart';
+import 'package:flutterapp/config/Style.dart';
+import 'package:flutterapp/config/Transitions.dart';
+import 'package:flutterapp/pages/ConversationPageSlide.dart';
+import 'package:flutterapp/widgets/CircleIndicator.dart';
+import 'package:flutterapp/widgets/NumberPicker.dart';
 
 class RegisterPage extends StatefulWidget {
   @override

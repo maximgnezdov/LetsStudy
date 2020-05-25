@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rubber/rubber.dart';
 import 'ConversationPage.dart';
-import 'package:flutterapp/Chat_menu/widgets/InputWidget.dart';
+import 'package:flutterapp/widgets/InputWidget.dart';
 import 'ConversationBottomSheet.dart';
 
 class ConversationPageSlide extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutterapp/Chat_menu/widgets/ChatItemWidget.dart';
+import 'package:flutterapp/widgets/ChatItemWidget.dart';
 
 void main(){
   const MaterialApp app = MaterialApp(

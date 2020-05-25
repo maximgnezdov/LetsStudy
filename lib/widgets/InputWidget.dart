@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/Chat_menu/config/Palette.dart';
-import 'package:flutterapp/Chat_menu/pages/ConversationBottomSheet.dart';
+import 'package:flutterapp/config/Palette.dart';
+import 'package:flutterapp/pages/ConversationBottomSheet.dart';
 
 class InputWidget extends StatelessWidget {
 

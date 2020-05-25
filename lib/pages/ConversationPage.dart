@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/Chat_menu/widgets/ChatAppBar.dart';
-import 'package:flutterapp/Chat_menu/widgets/ChatListWidget.dart';
-import 'package:flutterapp/Chat_menu/config/Palette.dart';
+import 'package:flutterapp/widgets/ChatAppBar.dart';
+import 'package:flutterapp/widgets/ChatListWidget.dart';
+import 'package:flutterapp/config/Palette.dart';
 
 class ConversationPage extends StatefulWidget {
   @override

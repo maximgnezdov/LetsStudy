@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:infinite_listview/infinite_listview.dart';
-import 'package:flutterapp/Chat_menu/config/Style.dart';
+import 'package:flutterapp/config/Style.dart';
 
 
 class NumberPicker extends StatelessWidget {

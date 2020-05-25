@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutterapp/Chat_menu/pages/ConversationPage.dart';
-import 'package:flutterapp/Chat_menu/widgets/ChatAppBar.dart';
-import 'package:flutterapp/Chat_menu/widgets/ChatListWidget.dart';
+import 'package:flutterapp/pages/ConversationPage.dart';
+import 'package:flutterapp/widgets/ChatAppBar.dart';
+import 'package:flutterapp/widgets/ChatListWidget.dart';
 void main(){
   const MaterialApp app = MaterialApp(
     home: Scaffold(

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/Chat_menu/config/Assets.dart';
-import 'package:flutterapp/Chat_menu/config/Palette.dart';
-import 'package:flutterapp/Chat_menu/config/Style.dart';
+import 'package:flutterapp/config/Assets.dart';
+import 'package:flutterapp/config/Palette.dart';
+import 'package:flutterapp/config/Style.dart';
 
 class jackShape extends CustomPainter {
   @override
