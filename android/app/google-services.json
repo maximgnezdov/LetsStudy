@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1078797870236",
+    "firebase_url": "https://letsstudyfirebase.firebaseio.com",
+    "project_id": "letsstudyfirebase",
+    "storage_bucket": "letsstudyfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1078797870236:android:c8038c5e110a4df167f959",
+        "android_client_info": {
+          "package_name": "com.example.letsstudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1078797870236-75nets3k28kao8sahqpv1bcom409hsi2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2hBn0GCFq_kJhfHSXmmI2lfGf8NKqBSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1078797870236-75nets3k28kao8sahqpv1bcom409hsi2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
