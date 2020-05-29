@@ -4,7 +4,6 @@ import 'package:flutterapp/config/Paths.dart';
 import 'package:flutterapp/models/User.dart';
 import 'package:flutterapp/providers/BaseProviders.dart';
 
-
 class UserDataProvider extends BaseUserDataProvider {
   final fireStoreDb = Firestore.instance;
 

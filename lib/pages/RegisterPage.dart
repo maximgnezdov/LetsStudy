@@ -1,10 +1,8 @@
-
 import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutterapp/config/Assets.dart';
 import 'package:flutterapp/config/Palette.dart';
 import 'package:flutterapp/config/Style.dart';
@@ -24,25 +22,20 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
-  int currentPage = 0;
 
-  //fields for the form
+  int currentPage = 0;
   File profileImageFile;
   ImageProvider profileImage;
   int age = 18;
   final TextEditingController usernameController = TextEditingController();
+  var isKeyboardOpen = false;
 
-  var isKeyboardOpen =
-  false; //this variable keeps track of the keyboard, when its shown and when its hidden
+  PageController pageController = PageController();
 
-  PageController pageController =
-  PageController(); // this is the controller of the page. This is used to navigate back and forth between the pages
+  //Gradient
+  Alignment begin = Alignment.topCenter;
+  Alignment end = Alignment.bottomCenter;
 
-  //Fields related to animation of the gradient
-  Alignment begin = Alignment.center;
-  Alignment end = Alignment.bottomRight;
-
-  //Fields related to animating the layout and pushing widgets up when the focus is on the username field
   AnimationController usernameFieldAnimationController;
   Animation profilePicHeightAnimation, usernameAnimation, ageAnimation;
   FocusNode usernameFocusNode = FocusNode();
@@ -56,6 +49,7 @@ class _RegisterPageState extends State<RegisterPage>
   }
 
   void initApp() async {
+
     WidgetsBinding.instance.addObserver(this);
     usernameFieldAnimationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
@@ -96,13 +90,14 @@ class _RegisterPageState extends State<RegisterPage>
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: onWillPop, //user to override the back button press
+        onWillPop: onWillPop,
         child: Scaffold(
           resizeToAvoidBottomPadding: false,
-          //  avoids the bottom overflow warning when keyboard is shown
           body: SafeArea(
               child: Stack(
                 children: <Widget>[
@@ -159,17 +154,17 @@ class _RegisterPageState extends State<RegisterPage>
               Palette.gradientEndColor
             ])),
         child: Container(
-            child: Center(
-              child: Column(children: <Widget>[
-                buildHeaderSectionWidget(),
-                Container(
-                  margin: EdgeInsets.only(top: 100),
-                  child: CircularProgressIndicator(
-                      valueColor:
-                      AlwaysStoppedAnimation<Color>(Palette.primaryColor)),
-                )
-              ]),
-            )));
+        child: Center(
+        child: Column(children: <Widget>[
+        buildHeaderSectionWidget(),
+    Container(
+    margin: EdgeInsets.only(top: 100),
+      child: CircularProgressIndicator(
+          valueColor:
+          AlwaysStoppedAnimation<Color>(Palette.primaryColor)),
+    )
+        ]),
+        )));
   }
 
   buildPageOne() {
@@ -212,24 +207,23 @@ class _RegisterPageState extends State<RegisterPage>
             )));
   }
 
+
   buildPageTwo() {
     return InkWell(
-      // to dismiss the keyboard when the user tabs out of the TextField
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
         }, child: Container(
-      child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        builder: (context, state) {
-          profileImage = Image.asset(Assets.user).image;
-          if (state is PreFillData) {
-            age = state.user.age != null ? state.user.age : 18;
-            profileImage = Image.network(state.user.photoUrl).image;
-          } else if (state is ReceivedProfilePicture) {
-            profileImageFile = state.file;
-            profileImage = Image.file(profileImageFile).image;
-          }
-
-          return Column(
+        child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            builder: (context, state) {
+              profileImage = Image.asset(Assets.user).image;
+              if (state is PreFillData) {
+                age = state.user.age != null ? state.user.age : 18;
+                profileImage = Image.network(state.user.photoUrl).image;
+              } else if (state is ReceivedProfilePicture) {
+                profileImageFile = state.file;
+                profileImage = Image.file(profileImageFile).image;
+              }
+              return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(height: profilePicHeightAnimation.value),
@@ -251,9 +245,9 @@ class _RegisterPageState extends State<RegisterPage>
               ),
               buildUsernameWidget()
             ],
-          );
-        },
-      ),
+              );
+            },
+        ),
     ));
   }
 
@@ -327,7 +321,7 @@ class _RegisterPageState extends State<RegisterPage>
         ));
   }
 
-  updatePageState(index) {
+    updatePageState(index) {
     if (currentPage == index) return;
     if (index == 1)
       pageController.nextPage(
@@ -345,7 +339,6 @@ class _RegisterPageState extends State<RegisterPage>
 
   Future<bool> onWillPop() async {
     if (currentPage == 1) {
-      //go to first page if currently on second page
       pageController.previousPage(
         duration: Duration(milliseconds: 300),
         curve: Curves.easeOut,
@@ -363,9 +356,6 @@ class _RegisterPageState extends State<RegisterPage>
     super.dispose();
   }
 
-  ///
-  /// This routine is invoked when the window metrics have changed.
-  ///
   @override
   void didChangeMetrics() {
     final value = MediaQuery.of(context).viewInsets.bottom;
@@ -418,4 +408,5 @@ class _RegisterPageState extends State<RegisterPage>
               ],
             )));
   }
+
 }

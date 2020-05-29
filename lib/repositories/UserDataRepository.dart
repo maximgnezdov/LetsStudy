@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterapp/models/User.dart';
 import 'package:flutterapp/providers/BaseProviders.dart';
