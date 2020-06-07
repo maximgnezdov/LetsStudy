@@ -69,6 +69,15 @@ class _SignInState extends State<SignIn> {
             )
           : Container(
               padding: EdgeInsets.symmetric(horizontal: 24),
+             decoration: BoxDecoration(
+               image: DecorationImage(
+                 image: AssetImage(
+                     'assets/images/logo2.png'),
+                 fit: BoxFit.scaleDown,
+                 alignment: Alignment.topCenter,
+
+               ),
+             ),
               child: Column(
                 children: [
                   Spacer(),
