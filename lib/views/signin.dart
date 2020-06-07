@@ -105,7 +105,7 @@ class _SignInState extends State<SignIn> {
                   SizedBox(
                     height: 16,
                   ),
-                  Row(
+                  /*Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
@@ -124,9 +124,9 @@ class _SignInState extends State<SignIn> {
                             )),
                       )
                     ],
-                  ),
+                  ),*/
                   SizedBox(
-                    height: 16,
+                    height: 36,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -159,7 +159,11 @@ class _SignInState extends State<SignIn> {
                   SizedBox(
                     height: 16,
                   ),
-                  Container(
+                  GestureDetector(
+                    onTap: () {
+                      widget.toggleView();
+                    },
+                  child: Container(
                     padding: EdgeInsets.symmetric(vertical: 16),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -172,10 +176,11 @@ class _SignInState extends State<SignIn> {
                       textAlign: TextAlign.center,
                     ),
                   ),
+      ),
                   SizedBox(
                     height: 16,
                   ),
-                  Row(
+                  /*Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -195,7 +200,7 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                     ],
-                  ),
+                  ),*/
                   SizedBox(
                     height: 50,
                   )

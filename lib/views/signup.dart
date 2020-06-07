@@ -112,7 +112,16 @@ class _SignUpState extends State<SignUp> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     gradient: LinearGradient(
-                      colors: [const Color(0xff007EF4), const Color(0xff2A75BC)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      stops: [
+                        0.6,
+                        1
+                      ],
+                      colors: [
+                        CustomTheme.selfMessageBackgroundColor,
+                        CustomTheme.gradientColor
+                      ],
                     )),
                 width: MediaQuery.of(context).size.width,
                 child: Text(
@@ -125,7 +134,7 @@ class _SignUpState extends State<SignUp> {
             SizedBox(
               height: 16,
             ),
-            Container(
+            /*Container(
               padding: EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30), color: Colors.white),
@@ -135,10 +144,10 @@ class _SignUpState extends State<SignUp> {
                 style: TextStyle(fontSize: 17, color: CustomTheme.textColor),
                 textAlign: TextAlign.center,
               ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
+            ),*/
+            /*SizedBox(
+              height: 46,
+            ),*/
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -161,7 +170,7 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
             SizedBox(
-              height: 50,
+              height: 100,
             )
           ],
         ),
