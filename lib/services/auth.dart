@@ -44,7 +44,7 @@ class AuthService {
     }
   }
 
-  Future<FirebaseUser> signInWithGoogle(BuildContext context) async {
+  /*Future<FirebaseUser> signInWithGoogle(BuildContext context) async {
     final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
     final GoogleSignInAccount googleSignInAccount =
@@ -64,7 +64,7 @@ class AuthService {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Chat()));
     }
   }
-
+*/
   Future signOut() async {
     try {
       return await _auth.signOut();

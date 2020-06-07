@@ -137,9 +137,15 @@ class _SignInState extends State<SignIn> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            stops: [
+                              0.6,
+                              1
+                            ],
                             colors: [
-                              const Color(0xff007EF4),
-                              const Color(0xff2A75BC)
+                               CustomTheme.selfMessageBackgroundColor,
+                               CustomTheme.gradientColor
                             ],
                           )),
                       width: MediaQuery.of(context).size.width,
@@ -160,7 +166,7 @@ class _SignInState extends State<SignIn> {
                         color: Colors.white),
                     width: MediaQuery.of(context).size.width,
                     child: Text(
-                      "Sign In with Google",
+                      "Sign up",
                       style:
                           TextStyle(fontSize: 17, color: CustomTheme.textColor),
                       textAlign: TextAlign.center,
