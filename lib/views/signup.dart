@@ -60,44 +60,60 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      resizeToAvoidBottomInset: false,
       body: isLoading ? Container(child: Center(child: CircularProgressIndicator(),),) :  Container(
         padding: EdgeInsets.symmetric(horizontal: 24),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [
+              0.5,
+              1
+            ],
+            colors: [
+              CustomTheme.alterBackground,
+              CustomTheme.alterGradient,
+            ],
+          ),
+        ),
         child: Column(
           children: [
             Spacer(),
             Form(
               key: formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    style: simpleTextStyle(),
-                    controller: usernameEditingController,
-                    validator: (val){
-                      return val.isEmpty || val.length < 3 ? "Enter Username 3+ characters" : null;
-                    },
-                    decoration: textFieldInputDecoration("username"),
-                  ),
-                  TextFormField(
-                    controller: emailEditingController,
-                    style: simpleTextStyle(),
-                    validator: (val){
-                      return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val) ?
-                          null : "Enter correct email";
-                    },
-                    decoration: textFieldInputDecoration("email"),
-                  ),
-                  TextFormField(
-                    obscureText: true,
-                    style: simpleTextStyle(),
-                    decoration: textFieldInputDecoration("password"),
-                    controller: passwordEditingController,
-                    validator:  (val){
-                      return val.length < 6 ? "Enter Password 6+ characters" : null;
-                    },
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TextFormField(
+                      style: simpleTextStyle(),
+                      controller: usernameEditingController,
+                      validator: (val){
+                        return val.isEmpty || val.length < 3 ? "Enter Username 3+ characters" : null;
+                      },
+                      decoration: textFieldInputDecoration("username"),
+                    ),
+                    TextFormField(
+                      controller: emailEditingController,
+                      style: simpleTextStyle(),
+                      validator: (val){
+                        return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val) ?
+                            null : "Enter correct email";
+                      },
+                      decoration: textFieldInputDecoration("email"),
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      style: simpleTextStyle(),
+                      decoration: textFieldInputDecoration("password"),
+                      controller: passwordEditingController,
+                      validator:  (val){
+                        return val.length < 6 ? "Enter Password 6+ characters" : null;
+                      },
 
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -111,22 +127,11 @@ class _SignUpState extends State<SignUp> {
                 padding: EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      stops: [
-                        0.6,
-                        1
-                      ],
-                      colors: [
-                        CustomTheme.selfMessageBackgroundColor,
-                        CustomTheme.gradientColor
-                      ],
-                    )),
+                    color: Colors.white),
                 width: MediaQuery.of(context).size.width,
                 child: Text(
                   "Sign Up",
-                  style: biggerTextStyle(),
+                  style: TextStyle(fontSize: 19, color: CustomTheme.alterGradient.withOpacity(0.9)),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -160,7 +165,7 @@ class _SignUpState extends State<SignUp> {
                     widget.toggleView();
                   },
                   child: Text(
-                    "SignIn now",
+                    "Sign In now",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
@@ -170,8 +175,8 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
             SizedBox(
-              height: 100,
-            )
+              height: 230,
+            ),
           ],
         ),
       ),
