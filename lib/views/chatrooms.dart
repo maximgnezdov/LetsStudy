@@ -58,6 +58,7 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Image.asset(
           "assets/images/logo.png",
@@ -79,7 +80,28 @@ class _ChatRoomState extends State<ChatRoom> {
         ],
       ),
       body: Container(
-        child: chatRoomsList(),
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              child: Text(
+                "Masseges",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                ),
+              ),
+              alignment: Alignment.topLeft,
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            chatRoomsList(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.search),
@@ -109,8 +131,23 @@ class ChatRoomsTile extends StatelessWidget {
         ));
       },
       child: Container(
-        color: Colors.black26,
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        height: 75,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(17),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            stops: [
+              0.5,
+              1
+            ],
+            colors: [
+              CustomTheme.alterBackground.withOpacity(0.7),
+              CustomTheme.alterGradient.withOpacity(0.8),
+            ],
+          ),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Row(
           children: [
             Container(
