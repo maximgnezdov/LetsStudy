@@ -15,5 +15,7 @@ class CustomTheme {
   static Color selfMessageColor = Colors.white;
   static Color otherMessageColor = Color(0xff3f3f3f);
   static Color greyColor = Colors.grey;
-  static Color chatBackgroundColor = Color(0xffCFF0FB)  ;
+  static Color chatBackgroundColor = Color(0xffCFF0FB);
+  static Color alterBackground = Color(0xffEE8068);
+  static Color alterGradient = Color(0xffA81D1D)  ;
 }
