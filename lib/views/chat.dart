@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'package:letsstudy/helper/constants.dart';
+import 'package:letsstudy/helper/theme.dart';
 import 'package:letsstudy/services/database.dart';
 import 'package:letsstudy/widget/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:letsstudy/widget/AppBar.dart';
 
 class Chat extends StatefulWidget {
   final String chatRoomId;
@@ -66,7 +68,8 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarMain(context),
+      backgroundColor: CustomTheme.chatBackgroundColor,
+      appBar: ChatAppBar(),
       body: Container(
         child: Stack(
           children: [
@@ -77,8 +80,8 @@ class _ChatState extends State<Chat> {
                   .size
                   .width,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                color: Color(0x54FFFFFF),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                color: Color(0xffFFFFFF),
                 child: Row(
                   children: [
                     Expanded(
@@ -86,10 +89,10 @@ class _ChatState extends State<Chat> {
                           controller: messageEditingController,
                           style: simpleTextStyle(),
                           decoration: InputDecoration(
-                              hintText: "Message ...",
+                              hintText: "Type a new message",
                               hintStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
+                                color: Colors.black,
+                                fontSize: 18,
                               ),
                               border: InputBorder.none
                           ),
@@ -105,8 +108,8 @@ class _ChatState extends State<Chat> {
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
                                   colors: [
-                                    const Color(0x36FFFFFF),
-                                    const Color(0x0FFFFFFF)
+                                    CustomTheme.selfMessageBackgroundColor,
+                                    CustomTheme.selfMessageBackgroundColor
                                   ],
                                   begin: FractionalOffset.topLeft,
                                   end: FractionalOffset.bottomRight
@@ -163,19 +166,20 @@ class MessageTile extends StatelessWidget {
           bottomRight: Radius.circular(23)),
             gradient: LinearGradient(
               colors: sendByMe ? [
-                const Color(0xff007EF4),
-                const Color(0xff2A75BC)
+                CustomTheme.selfMessageBackgroundColor.withOpacity(0.8),
+                CustomTheme.selfMessageBackgroundColor
               ]
                   : [
-                const Color(0x1AFFFFFF),
-                const Color(0x1AFFFFFF)
+                const Color(0xfFFFFFFF),
+                const Color(0xffFFFFFF)
               ],
             )
         ),
         child: Text(message,
             textAlign: TextAlign.start,
             style: TextStyle(
-            color: Colors.white,
+            color: sendByMe ? Colors.white
+                : Colors.black,
             fontSize: 16,
             fontFamily: 'OverpassRegular',
             fontWeight: FontWeight.w300)),

@@ -7,6 +7,8 @@ import 'package:letsstudy/services/database.dart';
 import 'package:letsstudy/views/chat.dart';
 import 'package:letsstudy/views/search.dart';
 import 'package:flutter/material.dart';
+import 'package:letsstudy/widget/AppBar.dart';
+
 
 class ChatRoom extends StatefulWidget {
   @override
@@ -21,8 +23,11 @@ class _ChatRoomState extends State<ChatRoom> {
       stream: chatRooms,
       builder: (context, snapshot) {
         return snapshot.hasData
-            ? ListView.builder(
-                itemCount: snapshot.data.documents.length,
+            ? ListView.separated(
+            separatorBuilder: (BuildContext context, int index) => Divider(
+              height: 10,
+            ),
+            itemCount: snapshot.data.documents.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return ChatRoomsTile(
@@ -58,27 +63,8 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Image.asset(
-          "assets/images/logo.png",
-          height: 40,
-        ),
-        elevation: 0.0,
-        centerTitle: false,
-        actions: [
-          GestureDetector(
-            onTap: () {
-              AuthService().signOut();
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => Authenticate()));
-            },
-            child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Icon(Icons.exit_to_app)),
-          )
-        ],
-      ),
+      backgroundColor: CustomTheme.chatBackgroundColor,
+      appBar: ChatAppBar(),
       body: Container(
         child: Column(
           children: <Widget>[
@@ -87,7 +73,7 @@ class _ChatRoomState extends State<ChatRoom> {
             ),
             Container(
               child: Text(
-                "Masseges",
+                "Messages",
                 textAlign: TextAlign.left,
                 style: TextStyle(
                     color: Colors.black,
@@ -104,6 +90,7 @@ class _ChatRoomState extends State<ChatRoom> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: CustomTheme.alterBackground,
         child: Icon(Icons.search),
         onPressed: () {
           Navigator.push(
@@ -135,15 +122,15 @@ class ChatRoomsTile extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(17),
           gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            end: Alignment.topLeft,
+            begin: Alignment.bottomRight,
             stops: [
               0.5,
               1
             ],
             colors: [
-              CustomTheme.alterBackground.withOpacity(0.7),
-              CustomTheme.alterGradient.withOpacity(0.8),
+              CustomTheme.greyColor.withOpacity(0.4),
+              CustomTheme.greyColor.withOpacity(0.4),
             ],
           ),
         ),
@@ -151,16 +138,17 @@ class ChatRoomsTile extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: 30,
-              width: 30,
+              height: 50,
+              width: 45,
               decoration: BoxDecoration(
-                  color: CustomTheme.colorAccent,
+                  color: CustomTheme.alterBackground,
                   borderRadius: BorderRadius.circular(30)),
-              child: Text(userName.substring(0, 1),
+              child: Text(
+                  "New",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 20,
                       fontFamily: 'OverpassRegular',
                       fontWeight: FontWeight.w300)),
             ),
@@ -170,8 +158,8 @@ class ChatRoomsTile extends StatelessWidget {
             Text(userName,
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
+                    color: Colors.black,
+                    fontSize: 20,
                     fontFamily: 'OverpassRegular',
                     fontWeight: FontWeight.w300))
           ],
