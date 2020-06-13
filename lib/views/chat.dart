@@ -4,6 +4,8 @@ import 'package:letsstudy/services/database.dart';
 import 'package:letsstudy/widget/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:letsstudy/helper/theme.dart';
+
 
 class Chat extends StatefulWidget {
   final String chatRoomId;
@@ -78,7 +80,7 @@ class _ChatState extends State<Chat> {
                   .width,
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                color: Color(0x54FFFFFF),
+                color: CustomTheme.alterBackground,//>>------ Message input --------<<
                 child: Row(
                   children: [
                     Expanded(
@@ -163,8 +165,8 @@ class MessageTile extends StatelessWidget {
           bottomRight: Radius.circular(23)),
             gradient: LinearGradient(
               colors: sendByMe ? [
-                const Color(0xff007EF4),
-                const Color(0xff2A75BC)
+                CustomTheme.alterBackground.withOpacity(0.7),
+                CustomTheme.alterGradient.withOpacity(0.8),
               ]
                   : [
                 const Color(0x1AFFFFFF),

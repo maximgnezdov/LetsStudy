@@ -1,5 +1,6 @@
 import 'package:letsstudy/views/signin.dart';
 import 'package:letsstudy/views/signup.dart';
+import 'package:letsstudy/views/startup.dart';
 import 'package:flutter/material.dart';
 
 class Authenticate extends StatefulWidget {

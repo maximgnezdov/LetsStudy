@@ -192,7 +192,7 @@ class _SignInState extends State<SignIn> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-      ),
+                    ),
                     SizedBox(
                       height: 16,
                     ),

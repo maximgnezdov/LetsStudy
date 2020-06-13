@@ -2,6 +2,7 @@ import 'package:letsstudy/helper/authenticate.dart';
 import 'package:letsstudy/helper/helperfunctions.dart';
 import 'package:letsstudy/views/chatrooms.dart';
 import 'package:flutter/material.dart';
+import 'package:letsstudy/views/startup.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,14 +42,13 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Color(0xff1F1F1F),
         accentColor: Color(0xff007EF4),
         fontFamily: "OverpassRegular",
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: userIsLoggedIn != null ?  userIsLoggedIn ? ChatRoom() : Authenticate()
+      home: StartUp()/*userIsLoggedIn != null ?  userIsLoggedIn ? ChatRoom() : Authenticate()
           : Container(
         child: Center(
           child: Authenticate(),
         ),
-      ),
+      ),*/
     );
   }
 }
