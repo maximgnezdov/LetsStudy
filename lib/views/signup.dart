@@ -1,3 +1,6 @@
+//import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:letsstudy/helper/helperfunctions.dart';
 import 'package:letsstudy/helper/theme.dart';
 import 'package:letsstudy/services/auth.dart';
@@ -25,6 +28,25 @@ class _SignUpState extends State<SignUp> {
 
   final formKey = GlobalKey<FormState>();
   bool isLoading = false;
+  var selectedCity;
+  var selectedPassion;
+  List<String> _selectedPassion = <String>[
+    'Biochemia',
+    'Biologia',
+    'Chemia',
+    'Design',
+    'Filozofia',
+    'Fizyka',
+    'Geografia',
+    'Historia',
+    'Informatyka',
+    'Jezyki Obce',
+    'Matematyka',
+    'Muzyka',
+    'Religia',
+    'Sport'
+  ];
+
 
   singUp() async {
 
@@ -40,7 +62,9 @@ class _SignUpState extends State<SignUp> {
 
               Map<String,String> userDataMap = {
                 "userName" : usernameEditingController.text,
-                "userEmail" : emailEditingController.text
+                "userEmail" : emailEditingController.text,
+                "userCity" : selectedCity.toString(),
+                "userInterest" : selectedPassion.toString()
               };
 
               databaseMethods.addUserInfo(userDataMap);
@@ -112,7 +136,98 @@ class _SignUpState extends State<SignUp> {
                       },
 
                     ),
+                    StreamBuilder<QuerySnapshot>(
+                      stream: Firestore.instance.collection("cities").snapshots(),
+                      // ignore: missing_return
+                      builder: (context, snapshot){
+                        if (!snapshot.hasData)
+                          const Text("Loading.....");
+                         else {
+                          List<DropdownMenuItem> currencyItems = [];
+                          for (int i = 0; i < snapshot.data.documents.length; i++){
+                            DocumentSnapshot snap = snapshot.data.documents[i];
+                            currencyItems.add(
+                              DropdownMenuItem(
+                                child: Text(
+                                  snap.documentID,
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                value: "${snap.documentID}",
+                              ),
+                            );
+                          }
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.public,
+                                  size: 25.0, color: Colors.white),
+                              SizedBox(width: 50.0),
+                              DropdownButton(
+                                items: currencyItems,
+                                onChanged: (currencyValue) {
+                                  final snackBar = SnackBar(
+                                    content: Text(
+                                      'Selected value is $currencyValue',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  );
+                                  Scaffold.of(context).showSnackBar(snackBar);
+                                  setState(() {
+                                    selectedCity = currencyValue;
+                                  });
+                                },
+                                value: selectedCity,
+                                isExpanded: false,
+                                hint: new Text(
+                                  "Choose City",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          );
+
+
+                        }
+                    }
+                    ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.school,
+                    size: 25.0,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: 50.0),
+                    DropdownButton(
+                      items: _selectedPassion
+                          .map((value) => DropdownMenuItem(
+                        child: Text(
+                          value,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        value: value,
+                      ))
+                          .toList(),
+                      onChanged: (selectedAccountType) {
+                        print('$selectedAccountType');
+                        setState(() {
+                          selectedPassion = selectedAccountType;
+                        });
+                      },
+                      value: selectedPassion,
+                      isExpanded: false,
+                      hint: Text(
+                        'Choose Interest',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                ],
+              ),
+
                   ],
+
                 ),
               ),
             ),

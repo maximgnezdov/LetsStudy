@@ -46,7 +46,11 @@ class _SearchState extends State<Search> {
           searchResultSnapshot.documents[index].data["userName"],
           searchResultSnapshot.documents[index].data["userEmail"],
         );
-        }) : Container();
+        }) : Container(
+           child: Center(
+             ///TODO tekst gdy uzytkownika nie znalezono
+       ),
+    );
   }
 
   /// 1.create a chatroom, send user to the chatroom, other userdetails
