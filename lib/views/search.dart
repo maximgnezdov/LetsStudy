@@ -19,13 +19,14 @@ class _SearchState extends State<Search> {
 
   bool isLoading = false;
   bool haveUserSearched = false;
+  var selectedPassion;
 
   initiateSearch() async {
-    if(searchEditingController.text.isNotEmpty){
+    if(selectedPassion.toString().isNotEmpty){
       setState(() {
         isLoading = true;
       });
-      await databaseMethods.searchByName(searchEditingController.text)
+      await databaseMethods.searchByName(selectedPassion.toString())
           .then((snapshot){
         searchResultSnapshot = snapshot;
         print("$searchResultSnapshot");
@@ -44,13 +45,10 @@ class _SearchState extends State<Search> {
         itemBuilder: (context, index){
         return userTile(
           searchResultSnapshot.documents[index].data["userName"],
-          searchResultSnapshot.documents[index].data["userEmail"],
+          searchResultSnapshot.documents[index].data["userCity"],
+          searchResultSnapshot.documents[index].data["userInterest"],
         );
-        }) : Container(
-           child: Center(
-             ///TODO tekst gdy uzytkownika nie znalezono
-       ),
-    );
+        }) : Container();
   }
 
   /// 1.create a chatroom, send user to the chatroom, other userdetails
@@ -74,7 +72,7 @@ class _SearchState extends State<Search> {
 
   }
 
-  Widget userTile(String userName,String userEmail){
+  Widget userTile(String userName,String userCity, String userInterest){
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Row(
@@ -90,12 +88,19 @@ class _SearchState extends State<Search> {
                 ),
               ),
               Text(
-                userEmail,
+                userCity,
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16
+                    color: Colors.white70,
+                    fontSize: 15
                 ),
-              )
+              ),
+              Text(
+                userInterest,
+                style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 15
+                ),
+              ),
             ],
           ),
           Spacer(),
@@ -154,7 +159,61 @@ class _SearchState extends State<Search> {
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
+                    child: StreamBuilder<QuerySnapshot>(
+                        stream: Firestore.instance.collection("passions").snapshots(),
+                        // ignore: missing_return
+                        builder: (context, snapshot){
+                          if (!snapshot.hasData)
+                            const Text("Loading.....");
+                          else {
+                            List<DropdownMenuItem> currencyItems = [];
+                            for (int i = 0; i < snapshot.data.documents.length; i++){
+                              DocumentSnapshot snap = snapshot.data.documents[i];
+                              currencyItems.add(
+                                DropdownMenuItem(
+                                  child: Text(
+                                    snap.documentID,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  value: "${snap.documentID}",
+                                ),
+                              );
+                            }
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(width: 50.0),
+                                DropdownButton(
+                                  items: currencyItems,
+                                  onChanged: (currencyValue) {
+                                    final snackBar = SnackBar(
+                                      content: Text(
+                                        'Selected value is $currencyValue',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    );
+                                    Scaffold.of(context).showSnackBar(snackBar);
+                                    setState(() {
+                                      selectedPassion = currencyValue;
+                                    });
+                                  },
+                                  value: selectedPassion,
+                                  isExpanded: false,
+                                  hint: new Text(
+                                    "Choose Interest",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                              ],
+                            );
+
+
+                          }
+                        }
+                    ),
+
+
+                    /*TextField(
                       controller: searchEditingController,
                       style: simpleTextStyle(),
                       decoration: InputDecoration(
@@ -165,7 +224,7 @@ class _SearchState extends State<Search> {
                         ),
                         border: InputBorder.none
                       ),
-                    ),
+                    ),*/
                   ),
                   GestureDetector(
                     onTap: (){

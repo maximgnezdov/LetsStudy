@@ -20,7 +20,7 @@ class DatabaseMethods {
   searchByName(String searchField) {
     return Firestore.instance
         .collection("users")
-        .where('userName', isEqualTo: searchField)
+        .where('userInterest', isEqualTo: searchField)
         .getDocuments();
   }
 
