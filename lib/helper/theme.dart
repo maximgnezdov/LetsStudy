@@ -9,13 +9,14 @@ class CustomTheme {
   static Color primaryTextColor = Colors.white;
   static Color secondaryTextColor = Colors.black;
   static Color primaryBackgroundColor = Colors.white;
-  static Color selfMessageBackgroundColor = Color(0xff64BAD6);
+  static Color selfMessageBackgroundColor = Color(0xff4fc3f7);
   static Color gradientColor = Color.fromRGBO(18, 160, 135, 1);
   static Color otherMessageBackgroundColor = Colors.white;
   static Color selfMessageColor = Colors.white;
   static Color otherMessageColor = Color(0xff3f3f3f);
   static Color greyColor = Colors.grey;
   static Color chatBackgroundColor = Color(0xffCFF0FB);
-  static Color alterBackground = Color(0xffEE8068);
-  static Color alterGradient = Color(0xffA81D1D)  ;
+  static Color alterBackground = Color(0xff80cbc4);
+  static Color alterGradient = Color(0xff4fc3f7);
+  static Color tealBackground = Color(0xffe0f2f1);
 }

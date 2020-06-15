@@ -43,12 +43,12 @@ class _MyAppState extends State<MyApp> {
         accentColor: Color(0xff007EF4),
         fontFamily: 'Open Sans',
       ),
-      home: StartUp()/*userIsLoggedIn != null ?  userIsLoggedIn ? ChatRoom() : Authenticate()
+      home:userIsLoggedIn != null ?  userIsLoggedIn ? ChatRoom() : Authenticate()
           : Container(
         child: Center(
           child: Authenticate(),
         ),
-      ),*/
+      ),
     );
   }
 }

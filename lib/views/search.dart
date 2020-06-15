@@ -151,108 +151,110 @@ class _SearchState extends State<Search> {
           child: CircularProgressIndicator(),
         ),
       ) :  Container(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              color: Color(0x54FFFFFF),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: StreamBuilder<QuerySnapshot>(
-                        stream: Firestore.instance.collection("passions").snapshots(),
-                        // ignore: missing_return
-                        builder: (context, snapshot){
-                          if (!snapshot.hasData)
-                            const Text("Loading.....");
-                          else {
-                            List<DropdownMenuItem> currencyItems = [];
-                            for (int i = 0; i < snapshot.data.documents.length; i++){
-                              DocumentSnapshot snap = snapshot.data.documents[i];
-                              currencyItems.add(
-                                DropdownMenuItem(
-                                  child: Text(
-                                    snap.documentID,
-                                    style: TextStyle(color: Colors.black),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                color: Color(0x54FFFFFF),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: StreamBuilder<QuerySnapshot>(
+                          stream: Firestore.instance.collection("passions").snapshots(),
+                          // ignore: missing_return
+                          builder: (context, snapshot){
+                            if (!snapshot.hasData)
+                              const Text("Loading.....");
+                            else {
+                              List<DropdownMenuItem> currencyItems = [];
+                              for (int i = 0; i < snapshot.data.documents.length; i++){
+                                DocumentSnapshot snap = snapshot.data.documents[i];
+                                currencyItems.add(
+                                  DropdownMenuItem(
+                                    child: Text(
+                                      snap.documentID,
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    value: "${snap.documentID}",
                                   ),
-                                  value: "${snap.documentID}",
-                                ),
+                                );
+                              }
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  SizedBox(width: 50.0),
+                                  DropdownButton(
+                                    items: currencyItems,
+                                    onChanged: (currencyValue) {
+                                      final snackBar = SnackBar(
+                                        content: Text(
+                                          'Selected value is $currencyValue',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      );
+                                      Scaffold.of(context).showSnackBar(snackBar);
+                                      setState(() {
+                                        selectedPassion = currencyValue;
+                                      });
+                                    },
+                                    value: selectedPassion,
+                                    isExpanded: false,
+                                    hint: new Text(
+                                      "Choose Interest",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
                               );
+
+
                             }
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                SizedBox(width: 50.0),
-                                DropdownButton(
-                                  items: currencyItems,
-                                  onChanged: (currencyValue) {
-                                    final snackBar = SnackBar(
-                                      content: Text(
-                                        'Selected value is $currencyValue',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    );
-                                    Scaffold.of(context).showSnackBar(snackBar);
-                                    setState(() {
-                                      selectedPassion = currencyValue;
-                                    });
-                                  },
-                                  value: selectedPassion,
-                                  isExpanded: false,
-                                  hint: new Text(
-                                    "Choose Interest",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ],
-                            );
-
-
                           }
-                        }
-                    ),
-
-
-                    /*TextField(
-                      controller: searchEditingController,
-                      style: simpleTextStyle(),
-                      decoration: InputDecoration(
-                        hintText: "search username ...",
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                        border: InputBorder.none
                       ),
-                    ),*/
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      initiateSearch();
-                    },
-                    child: Container(
-                      height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              const Color(0x36FFFFFF),
-                              const Color(0x0FFFFFFF)
-                            ],
-                            begin: FractionalOffset.topLeft,
-                            end: FractionalOffset.bottomRight
+
+
+                      /*TextField(
+                        controller: searchEditingController,
+                        style: simpleTextStyle(),
+                        decoration: InputDecoration(
+                          hintText: "search username ...",
+                          hintStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
                           ),
-                          borderRadius: BorderRadius.circular(40)
+                          border: InputBorder.none
                         ),
-                        padding: EdgeInsets.all(12),
-                        child: Image.asset("assets/images/search_white.png",
-                          height: 25, width: 25,)),
-                  )
-                ],
+                      ),*/
+                    ),
+                    GestureDetector(
+                      onTap: (){
+                        initiateSearch();
+                      },
+                      child: Container(
+                        height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                const Color(0x36FFFFFF),
+                                const Color(0x0FFFFFFF)
+                              ],
+                              begin: FractionalOffset.topLeft,
+                              end: FractionalOffset.bottomRight
+                            ),
+                            borderRadius: BorderRadius.circular(40)
+                          ),
+                          padding: EdgeInsets.all(12),
+                          child: Image.asset("assets/images/search_white.png",
+                            height: 25, width: 25,)),
+                    )
+                  ],
+                ),
               ),
-            ),
-            userList()
-          ],
+              userList()
+            ],
+          ),
         ),
       ),
     );

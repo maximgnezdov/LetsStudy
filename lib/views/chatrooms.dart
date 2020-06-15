@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:letsstudy/helper/authenticate.dart';
 import 'package:letsstudy/helper/constants.dart';
 import 'package:letsstudy/helper/helperfunctions.dart';
@@ -7,6 +8,8 @@ import 'package:letsstudy/services/database.dart';
 import 'package:letsstudy/views/chat.dart';
 import 'package:letsstudy/views/search.dart';
 import 'package:flutter/material.dart';
+
+
 
 class ChatRoom extends StatefulWidget {
   @override
@@ -46,6 +49,7 @@ class _ChatRoomState extends State<ChatRoom> {
 
   getUserInfogetChats() async {
     Constants.myName = await HelperFunctions.getUserNameSharedPreference();
+    Constants.City = await HelperFunctions.getCitySharedPreference();
     DatabaseMethods().getUserChats(Constants.myName).then((snapshots) {
       setState(() {
         chatRooms = snapshots;
@@ -58,8 +62,9 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: CustomTheme.chatBackgroundColor,
       appBar: AppBar(
+        backgroundColor: CustomTheme.accentColor,
         title: Image.asset(
           "assets/images/logo.png",
           height: 40,
@@ -87,14 +92,14 @@ class _ChatRoomState extends State<ChatRoom> {
             ),
             Container(
               child: Text(
-                "Masseges",
-                textAlign: TextAlign.left,
+                "Users",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 25,
                 ),
               ),
-              alignment: Alignment.topLeft,
+              alignment: Alignment.topCenter,
             ),
             SizedBox(
               height: 14,
@@ -117,8 +122,9 @@ class _ChatRoomState extends State<ChatRoom> {
 class ChatRoomsTile extends StatelessWidget {
   final String userName;
   final String chatRoomId;
+  final String userCity;
 
-  ChatRoomsTile({this.userName,@required this.chatRoomId});
+  ChatRoomsTile({this.userName,@required this.chatRoomId, this.userCity});
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +137,7 @@ class ChatRoomsTile extends StatelessWidget {
         ));
       },
       child: Container(
-        height: 75,
+        height: 80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(17),
           gradient: LinearGradient(
@@ -142,8 +148,8 @@ class ChatRoomsTile extends StatelessWidget {
               1
             ],
             colors: [
-              CustomTheme.alterBackground.withOpacity(0.7),
-              CustomTheme.alterGradient.withOpacity(0.8),
+              CustomTheme.alterBackground,
+              CustomTheme.alterGradient,
             ],
           ),
         ),
@@ -161,19 +167,31 @@ class ChatRoomsTile extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
-                      fontFamily: 'OverpassRegular',
+                      fontFamily: 'Open Sans',
                       fontWeight: FontWeight.w300)),
             ),
             SizedBox(
               width: 12,
             ),
-            Text(userName,
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'OverpassRegular',
-                    fontWeight: FontWeight.w300))
+            Column(
+              children: [
+                Text(userName,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w300)),
+                Text('Lodz',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Open Sans',
+                        fontWeight: FontWeight.w300)),
+
+              ],
+            )
           ],
         ),
       ),

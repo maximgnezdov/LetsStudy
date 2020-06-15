@@ -17,6 +17,24 @@ class DatabaseMethods {
     });
   }
 
+  checkUserCity(String city) async {
+    return Firestore.instance
+        .collection("users")
+        .getDocuments()
+        .catchError((e) {
+          print(e.toString());
+    });
+  }
+
+  checkUserPassion(String city) async {
+    return Firestore.instance
+        .collection("cities")
+        .getDocuments()
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
   searchByName(String searchField) {
     return Firestore.instance
         .collection("users")

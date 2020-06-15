@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:letsstudy/helper/constants.dart';
 import 'package:letsstudy/services/database.dart';
+import 'package:letsstudy/widget/AppBar.dart';
 import 'package:letsstudy/widget/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:letsstudy/helper/theme.dart';
+import 'package:letsstudy/widget/AppBar.dart';
 
 
 class Chat extends StatefulWidget {
@@ -68,6 +70,7 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomTheme.chatBackgroundColor,
       appBar: appBarMain(context),
       body: Container(
         child: Stack(
@@ -179,7 +182,7 @@ class MessageTile extends StatelessWidget {
             style: TextStyle(
             color: Colors.white,
             fontSize: 16,
-            fontFamily: 'OverpassRegular',
+            fontFamily: 'Open Sans',
             fontWeight: FontWeight.w300)),
       ),
     );
