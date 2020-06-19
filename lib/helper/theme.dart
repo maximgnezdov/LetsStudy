@@ -19,4 +19,5 @@ class CustomTheme {
   static Color alterBackground = Color(0xff80cbc4);
   static Color alterGradient = Color(0xff4fc3f7);
   static Color tealBackground = Color(0xffe0f2f1);
+  static Color recievedMessageColor = Color(0xffffd54f);
 }

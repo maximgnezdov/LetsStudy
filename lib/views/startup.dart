@@ -5,7 +5,6 @@ import 'package:letsstudy/helper/authenticate.dart';
 import 'package:letsstudy/services/auth.dart';
 import 'package:letsstudy/services/database.dart';
 import 'package:letsstudy/views/signin.dart';
-import 'package:letsstudy/views/forgot_password.dart';
 import 'package:letsstudy/widget/widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

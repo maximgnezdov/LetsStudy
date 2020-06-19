@@ -8,6 +8,7 @@ import 'package:letsstudy/services/database.dart';
 import 'package:letsstudy/views/chat.dart';
 import 'package:letsstudy/views/search.dart';
 import 'package:flutter/material.dart';
+import 'package:letsstudy/views/sidebar.dart';
 
 
 
@@ -49,7 +50,7 @@ class _ChatRoomState extends State<ChatRoom> {
 
   getUserInfogetChats() async {
     Constants.myName = await HelperFunctions.getUserNameSharedPreference();
-    Constants.City = await HelperFunctions.getCitySharedPreference();
+    //Constants.City = await HelperFunctions.getCitySharedPreference();
     DatabaseMethods().getUserChats(Constants.myName).then((snapshots) {
       setState(() {
         chatRooms = snapshots;
@@ -62,9 +63,10 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MainDrawer(),
       backgroundColor: CustomTheme.chatBackgroundColor,
       appBar: AppBar(
-        backgroundColor: CustomTheme.accentColor,
+        backgroundColor: CustomTheme.chatBackgroundColor,
         title: Image.asset(
           "assets/images/logo.png",
           height: 40,
@@ -82,6 +84,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Icon(Icons.exit_to_app)),
           )
+
         ],
       ),
       body: Container(
@@ -173,7 +176,7 @@ class ChatRoomsTile extends StatelessWidget {
             SizedBox(
               width: 12,
             ),
-            Column(
+            Row(
               children: [
                 Text(userName,
                     textAlign: TextAlign.start,
@@ -182,14 +185,6 @@ class ChatRoomsTile extends StatelessWidget {
                         fontSize: 16,
                         fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w300)),
-                Text('Lodz',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'Open Sans',
-                        fontWeight: FontWeight.w300)),
-
               ],
             )
           ],

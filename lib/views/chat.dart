@@ -71,7 +71,10 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomTheme.chatBackgroundColor,
-      appBar: appBarMain(context),
+      appBar: AppBar(
+        title: Text('Vova'),
+        backgroundColor: CustomTheme.recievedMessageColor,
+      ),
       body: Container(
         child: Stack(
           children: [
@@ -169,11 +172,11 @@ class MessageTile extends StatelessWidget {
             gradient: LinearGradient(
               colors: sendByMe ? [
                 CustomTheme.alterBackground.withOpacity(0.7),
-                CustomTheme.alterGradient.withOpacity(0.8),
+                CustomTheme.alterGradient..withOpacity(0.7),
               ]
                   : [
-                const Color(0x1AFFFFFF),
-                const Color(0x1AFFFFFF)
+                CustomTheme.recievedMessageColor.withOpacity(0.8),
+                CustomTheme.alterGradient.withOpacity(0.8)
               ],
             )
         ),
