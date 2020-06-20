@@ -1,19 +1,55 @@
+import 'package:letsstudy/helper/authenticate.dart';
+import 'package:letsstudy/helper/helperfunctions.dart';
+import 'package:letsstudy/views/chatrooms.dart';
 import 'package:flutter/material.dart';
-import 'Chat_menu/config/Palette.dart';
-import 'Chat_menu/pages/ConversationPageSlide.dart';
-void main() => runApp(LetsStudy());
+import 'package:letsstudy/views/startup.dart';
+import 'package:letsstudy/views/sidebar.dart';
 
-class LetsStudy extends StatelessWidget {
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  bool userIsLoggedIn;
+
+  @override
+  void initState() {
+    getLoggedInState();
+    super.initState();
+  }
+
+  getLoggedInState() async {
+    await HelperFunctions.getUserLoggedInSharedPreference().then((value){
+      setState(() {
+        userIsLoggedIn  = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'FlutterChat',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
-        primaryColor: Palette.primaryColor,
+        primaryColor: Color(0xff145C9E),
+        scaffoldBackgroundColor: Color(0xff1F1F1F),
+        accentColor: Color(0xff007EF4),
+        fontFamily: 'Open Sans',
       ),
-      home: ConversationPageSlide(),
+      home: StartUp()/*userIsLoggedIn != null ?  userIsLoggedIn ? ChatRoom() : Authenticate()
+          : Container(
+        child: Center(
+          child: Authenticate(),
+        ),
+      ),*/
     );
   }
 }
